@@ -1,25 +1,26 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Sample data structure for courses
 const coursesData = {
-  geometry: [
+  numbers: [
     {
-      title: "Euclidean Geometry",
+      title: "Numbers",
       color: "#0F82F2",
-      icon: "/content/euclidean-geometry/icon.png",
+      icon: "/images/math01.png",
       sections: [
         {
           name: "Introduction",
-          link: "/course/euclidean-geometry/introduction",
+          link: "/math01#introduction",
         },
-        { name: "Euclid’s Axioms", link: "/course/euclidean-geometry/axioms" },
+        { name: "Real Numbers", link: "/math01" },
         {
-          name: "Ruler and Compass Construction",
-          link: "/course/euclidean-geometry/construction",
+          name: "Complex Numbers",
+          link: "/math01",
         },
         {
-          name: "Origami and Paper Folding",
-          link: "/course/euclidean-geometry/origami",
+          name: "Mathematical Induction",
+          link: "/math01",
         },
       ],
     },
@@ -36,7 +37,6 @@ const coursesData = {
           link: "/physics01#introduction",
         },
         { name: "Scalar and Vector quantities", link: "/physics01" },
-        { name: "Prime Numbers", link: "/physics01" },
         {
           name: "Compositionn and resolution of forces",
           link: "/physics01",
@@ -68,7 +68,7 @@ const coursesData = {
       ],
     },
   ],
-   biology: [
+  biology: [
     {
       title: "Blood Test",
       color: "#1AA845",
@@ -111,53 +111,66 @@ const Hero = () => (
   </div>
 );
 
-const Tabs = ({ activeTab, setActiveTab }) => (
-  <div className="flex flex-wrap justify-center gap-4 bg-gray-100 p-2 rounded-lg">
-    <button
-      className={`px-4 py-2 font-medium transition-colors duration-200 ${
-        activeTab === "geometry"
-          ? "bg-blue-100 text-black"
-          : "bg-gray-100 text-black hover:bg-blue-100"
-      }`}
-      onClick={() => setActiveTab("geometry")}
-    >
-      Mathematics
-    </button>
+const Tabs = ({ activeTab, setActiveTab }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="flex flex-wrap justify-center gap-4 bg-gray-100 p-2 rounded-lg">
+      <button
+        className={`px-4 py-2 font-medium transition-colors duration-200 ${
+          activeTab === "geometry"
+            ? "bg-blue-100 text-black"
+            : "bg-gray-100 text-black hover:bg-blue-100"
+        }`}
+        onClick={() => setActiveTab("numbers")}
+      >
+        Mathematics
+      </button>
 
-    <button
-      className={`px-4 py-2 font-medium transition-colors duration-200 ${
-        activeTab === "mechanics"
-          ? "bg-blue-100 text-black"
-          : "bg-gray-100 text-black hover:bg-blue-100"
-      }`}
-      onClick={() => setActiveTab("mechanics")}
-    >
-      Physics
-    </button>
+      <button
+        className={`px-4 py-2 font-medium transition-colors duration-200 ${
+          activeTab === "mechanics"
+            ? "bg-blue-100 text-black"
+            : "bg-gray-100 text-black hover:bg-blue-100"
+        }`}
+        onClick={() => setActiveTab("mechanics")}
+      >
+        Physics
+      </button>
 
-    <button
-      className={`px-4 py-2 font-medium transition-colors duration-200 ${
-        activeTab === "chemistry"
-          ? "bg-blue-100 text-black"
-          : "bg-gray-100 text-black hover:bg-blue-100"
-      }`}
-      onClick={() => setActiveTab("chemistry")}
-    >
-      Chemistry
-    </button>
+      <button
+        className={`px-4 py-2 font-medium transition-colors duration-200 ${
+          activeTab === "chemistry"
+            ? "bg-blue-100 text-black"
+            : "bg-gray-100 text-black hover:bg-blue-100"
+        }`}
+        onClick={() => setActiveTab("chemistry")}
+      >
+        Chemistry
+      </button>
 
-    <button
-      className={`px-4 py-2 font-medium transition-colors duration-200 ${
-        activeTab === "biology"
-          ? "bg-blue-100 text-black"
-          : "bg-gray-100 text-black hover:bg-blue-100"
-      }`}
-      onClick={() => setActiveTab("biology")}
-    >
-     Biology
-    </button>
-  </div>
-);
+      <button
+        className={`px-4 py-2 font-medium transition-colors duration-200 ${
+          activeTab === "biology"
+            ? "bg-blue-100 text-black"
+            : "bg-gray-100 text-black hover:bg-blue-100"
+        }`}
+        onClick={() => setActiveTab("biology")}
+      >
+        Biology
+      </button>
+      <button
+        className={`px-4 py-2 font-medium transition-colors duration-200 ${
+          activeTab === "biology"
+            ? "bg-blue-100 text-black"
+            : "bg-gray-100 text-black hover:bg-blue-100"
+        }`}
+        onClick={() => navigate("/more")}
+      >
+        More
+      </button>
+    </div>
+  );
+};
 
 const CourseCard = ({ course }) => (
   <div className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col mt-5 ml-3">
@@ -248,7 +261,9 @@ const Footer = () => (
       </div>
 
       {/* Right copyright */}
-      <div className="text-sm text-gray-500 mt-2 md:mt-0">© 2025 LearnPhysics</div>
+      <div className="text-sm text-gray-500 mt-2 md:mt-0">
+        © 2025 LearnPhysics
+      </div>
     </div>
   </footer>
 );
@@ -258,12 +273,12 @@ export default function Home() {
 
   return (
     <>
-    <main className="font-sans text-gray-800 bg-gray-50 leading-relaxed">
-      <Hero />
-      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      <CoursesPanel courses={coursesData[activeTab]} />
-    </main>
-    <Footer />
+      <main className="font-sans text-gray-800 bg-gray-50 leading-relaxed">
+        <Hero />
+        <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+        <CoursesPanel courses={coursesData[activeTab]} />
+      </main>
+      <Footer />
     </>
   );
 }

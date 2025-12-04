@@ -2,49 +2,48 @@
 import Header from "../components/Header";
 import LessonSection from "../components/LessonSection";
 import Sidebar from "../components/Sidebar";
-import ScalarVectorVisualizer from "../components/ScalarVectorVis";
 
-// data for the sidebar
+// data for sidebar
 const Data = {
     lessons: [
       {
         title: "Introduction",
-        href: "/physics01#introduction",
+        href: "/math01#introduction",
         progress: 0,
         active: true,
       },
       {
-        title: "Forces",
-        href: "/physics01#forces",
+        title: "Sets",
+        href: "/math01",
         progress: 0,
       },
-      { title: "Moments and Couples", href: "/course/divisibility/primes", progress: 0 },
+      { title: "Moments and Couples", href: "/math01", progress: 0 },
       {
           title: "Equillibrium",
-          href: "/course/divisibility/lcm",
+          href: "/math01",
           progress: 0,
         },
         {
           title: "Friction",
-          href: "/course/divisibility/distribution-of-primes",
+          href: "/math01",
           progress: 0,
         },
       {
         title: "Uniform Motion",
-        href: "/course/divisibility/gcf",
+        href: "/math01",
         progress: 0,
       },
       {
         title: "Projectiles",
-        href: "/course/divisibility/gcf",
+        href: "/math01",
         progress: 0,
       },
     ],
-    img: "url(/images/phy01.png)",
-    label: "Clasical Mechanics",
+    img: "url(/images/math01.png)",
+    label: "Numbers",
 }
 
-export default function Physics01() {
+export default function Math01() {
     const torqueSymbol = "\u03C4";
 
   return (
@@ -61,7 +60,7 @@ export default function Physics01() {
 
         {/* Course Introduction */}
         <section id="introduction" className="space-y-4">
-          <h1 className="text-4xl font-bold">Mechanics</h1>
+          <h1 className="text-4xl font-bold">Numbers</h1>
         </section>
 
         {/* Lesson Sections */}
@@ -80,7 +79,6 @@ export default function Physics01() {
           Scalars are computed arithmetically: added, subtracted from the numbers. Vectors, however, are computed geometrically. A method commmon on this is the 
           <i>the parallelogram law</i>"
         />
-        <ScalarVectorVisualizer />
         <LessonSection
           title="The Parallelogram Law"
           content="<i>If the forces acting at a point are represented in magnitude and direction by the sides of a parallelogram

@@ -1,42 +1,9 @@
 import '../App.css'
 
-// Dummy data for lessons
-const lessons = [
-  {
-    title: "Introduction",
-    href: "/physics01#introduction",
-    progress: 0,
-    active: true,
-  },
-  {
-    title: "Forces",
-    href: "/physics01#forces",
-    progress: 0,
-  },
-  { title: "Moments and Couples", href: "/course/divisibility/primes", progress: 0 },
-  {
-      title: "Equillibrium",
-      href: "/course/divisibility/lcm",
-      progress: 0,
-    },
-    {
-      title: "Friction",
-      href: "/course/divisibility/distribution-of-primes",
-      progress: 0,
-    },
-  {
-    title: "Uniform Motion",
-    href: "/course/divisibility/gcf",
-    progress: 0,
-  },
-  {
-    title: "Projectiles",
-    href: "/course/divisibility/gcf",
-    progress: 0,
-  },
-];
+// Dummy data for sidebar
 
-export default function PhyCourseSidebar() {
+
+export default function Sidebar({sidebarData}) {
   return (
     <aside
       className="flex flex-col text-white"
@@ -66,18 +33,17 @@ export default function PhyCourseSidebar() {
       {/* Hero */}
       <div
         className="relative h-48 bg-cover bg-center"
-        style={{ backgroundImage: "url(/images/phy01.png)" }}
+        style={{ backgroundImage: sidebarData.img || sidebarData.img }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
         <div className="absolute bottom-4 left-4 flex items-center space-x-2">
-          <div className="w-10 h-10 rounded-full bg-[#1AA845] bg-[url('/content/divisibility/icon.png')] bg-cover"></div>
-          <h2 className="text-lg font-bold">Clasical Mechanics</h2>
+          <h2 className="text-lg font-bold">{sidebarData.label || sidebarData.label}</h2>
         </div>
       </div>
 
       {/* Body */}
       <div className="flex-1 overflow-y-auto">
-        {lessons.map((lesson, idx) =>
+        {sidebarData.lessons.map((lesson, idx) =>
           lesson.active ? (
             <div key={idx} className="flex items-center px-4 py-3 bg-[#179e3a]">
               <LessonProgress r={10} p={lesson.progress} />
